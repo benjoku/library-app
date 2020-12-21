@@ -1,0 +1,29 @@
+<% if user_signed_in? %>
+
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="table-dark">
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>User Id</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @books.each do |book| %>
+      <% if book.user == current_user %>
+        <tr>
+          <td><%= link_to book.title, book %></td>
+          <td><%= book.author %></td>
+          <td><%= book.user_id %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+<% else %>
+  <h2>Welcome to the library app!</h2>
+<% end %>

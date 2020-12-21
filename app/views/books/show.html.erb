@@ -1,0 +1,14 @@
+<div class="jumbotron">
+  <h1 class="display-4"><%= @book.title %></h1>
+  <p class="lead">Author: <%= @book.author %></p>
+  <hr class="my-4">
+  <% if current_user.admin? %>
+    <%= link_to 'Edit', edit_book_path(@book), class:"btn btn-secondary" %>
+    <%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' },
+                    class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to 'Borrow', borrow_book_path(@book.id), method: :patch, class: 'btn btn-secondary' %>
+  <% end %>
+  <br><br>
+  <%= link_to 'Back', books_path%>
+</div>
